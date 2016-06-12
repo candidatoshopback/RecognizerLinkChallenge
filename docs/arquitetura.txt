@@ -1,0 +1,32 @@
+Arquitetura
+
+Para o desafio foram utlizadas as seguintes tecnologias:
+
+PHP 5.6
+Laravel 5.2
+MongoDB 2.6
+Redis 3.2
+
+
+Para completar o desafio o sistema foi estruturado para possuir um database principal no mongo contendo o cadastro de todos os clientes. E para cada cliente um novo database contendo uma collection para seus produtos e uma collection para seus links.
+
+Em component/Mongo temos algumas classes que foram implementadas para nos auxiliar no processo de gerenciar multiplos banco de dados. A lib https://github.com/jenssegers/laravel-mongodb daria um pouco de trabalho modificar para trabalhar da forma desejada, e para os fins desse teste optei por ter um micro estrutura própria,(o minimo possível mesmo), usando o mongodb/mongodb, http://mongodb.github.io/mongo-php-library/. Basicamente ao instanciar uma model de Link e Product, informamos o nome do db do cliente que é um slug do dominio do cliente.
+
+Ex:
+	Cliente: www.lojadojoao.com.br // database www-lojadojoao-com-br 
+	new Link('www-lojadojoao-com-br') // Conecta no database www-lojadojoao-com-br -> collection Link 
+
+Foram utilizadas expressões regulares para fazer o tratamento das urls para enviar as consultas para o mongo, e assim retornar a qual produto elas pertencem. E o resultado do processo de reconhecimento de URL esta sendo armazenado em um caching system default do laravel, em formato de arquivo. ( poderia usar o redis, mas dessa forma para rodar os testes unitários não precisamos ter o redis instalado e configurado no sistema. )
+
+Das 12 urls disponíveis para o teste 11 foram encontradas corretamente. ( testes disponíveis em tests/component/Recognizer/Manager/RecognizerLinkManagerTest.php. O unico teste que não passou foi para o link http://www.lojadojoao.com.br/categoria-teste. ( Para este desafio acredito que essa solução atende aos requisitos solicitados, no entanto para uma solução real acredito que teriamos de implementar um mecanismo mais elaborado, considerando peso de palavras, grau de precisão do reconhecimento e talvez uma lista de palavras reservadas. Uma sujestão seria também fazer uma chamada curl para o link e tentar fazer a validação utilizando as tags title e description da pagina.
+
+Todos os testes estão localizados em tests e podem ser executados chamando phpunit na raiz do projeto ou vendor/phpunit/phpunit/phpunit.
+
+Em docs/postman temos a exportação das collection do plugin do chrome Postman para fazer as chamadas para a API.
+
+Instalação:
+
+Após fazer o checkout da branch recognizer-link-implementation.
+Verifique se você possui o driver php5-mongo instalado e habilitado.
+rodar a instalação do composer:
+composer install

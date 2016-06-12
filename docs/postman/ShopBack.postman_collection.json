@@ -1,0 +1,81 @@
+{
+	"id": "f54bfa94-6713-c11a-3187-6722aa3caa27",
+	"name": "ShopBack",
+	"description": "",
+	"order": [
+		"4980b227-4afa-c46f-d652-b946fb0acd44",
+		"cd56dae2-1199-a1f6-e08b-aa4818b6910d",
+		"a3db6bf4-47ec-8d1b-1763-455cfbf7e136"
+	],
+	"folders": [],
+	"timestamp": 1465760563628,
+	"owner": "363620",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "4980b227-4afa-c46f-d652-b946fb0acd44",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://localhost:8000/api/client/create",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465760867280,
+			"name": "http://localhost:8000/api/client/create",
+			"description": "",
+			"collectionId": "f54bfa94-6713-c11a-3187-6722aa3caa27",
+			"responses": [],
+			"rawModeData": "{\n    \"domain\":\"www.lojadojoao.com.br\",\n    \"xml\": \"tests/resources/lojadojoao.xml\"\n}"
+		},
+		{
+			"id": "a3db6bf4-47ec-8d1b-1763-455cfbf7e136",
+			"headers": "",
+			"url": "http://localhost:8000/api/xml/import/{client_id}",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465763027611,
+			"name": "http://localhost:8000/api/xml/import/{id}",
+			"description": "",
+			"collectionId": "f54bfa94-6713-c11a-3187-6722aa3caa27",
+			"responses": []
+		},
+		{
+			"id": "cd56dae2-1199-a1f6-e08b-aa4818b6910d",
+			"headers": "Content-Type: application/json\n",
+			"url": "http://localhost:8000/api/notify",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "url",
+					"value": "http://www.lojadojoao.com.br/produto-de-teste-1-16599221",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1465760781148,
+			"name": "http://localhost:8000/api/notify",
+			"description": "",
+			"collectionId": "f54bfa94-6713-c11a-3187-6722aa3caa27",
+			"responses": []
+		}
+	]
+}
